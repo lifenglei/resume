@@ -2,7 +2,7 @@
  * @Author: lifenglei 1125911451@qq.com
  * @Date: 2025-03-27 14:39:37
  * @LastEditors: lifenglei 1125911451@qq.com
- * @LastEditTime: 2025-03-27 15:15:16
+ * @LastEditTime: 2025-03-27 16:53:37
  * @Description:
  *
  */
@@ -58,7 +58,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps

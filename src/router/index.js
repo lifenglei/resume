@@ -2,8 +2,8 @@
  * @Author: lifenglei 1125911451@qq.com
  * @Date: 2025-03-27 14:39:37
  * @LastEditors: lifenglei 1125911451@qq.com
- * @LastEditTime: 2025-03-27 15:38:20
- * @FilePath: /resume/src/router/index.js
+ * @LastEditTime: 2025-04-08 14:10:55
+ * @FilePath: /jd/resume/src/router/index.js
  * @Description:
  *
  */
@@ -35,6 +35,14 @@ export default new Router({
       path: '/interview-questions',
       name: 'interview-questions',
       component: InterviewQuestions,
+      meta: {
+        title: '前端面试题库'
+      }
+    },
+    {
+      path: '/interview-questions/:type',
+      name: 'interview-questions-type',
+      component: () => import('@/pages/question/index'),
       meta: {
         title: '前端面试题库'
       }

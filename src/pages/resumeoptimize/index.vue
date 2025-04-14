@@ -85,7 +85,7 @@ export default {
       const formData = new FormData()
       formData.append('file', this.uploadedFile)
 
-      fetch('/api/v1/files/upload', {
+      fetch('https://api.coze.cn/v1/files/upload', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${apiKey}`
@@ -120,7 +120,7 @@ export default {
         }
       }
       try {
-        const response = await fetch('/api/v1/workflow/run', {
+        const response = await fetch('https://api.coze.cn/v1/workflow/run', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${apiKey}` // 替换为您的 API Key
@@ -156,7 +156,7 @@ export default {
         }
       }
       try {
-        const response = await fetch('/api/v1/workflow/run', {
+        const response = await fetch('https://api.coze.cn/v1/workflow/run', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${apiKey}` // 替换为您的 API Key

@@ -30,21 +30,21 @@
               class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
               active-class="border-indigo-500 text-gray-900"
             >
-              简历优化
+              AI简历优化
             </router-link>
             <router-link
               to="/interview-questions"
               class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
               active-class="border-indigo-500 text-gray-900"
             >
-              面试题库
+              面试题库(飞书链接)
             </router-link>
             <router-link
               to="/salary-report"
               class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
               active-class="border-indigo-500 text-gray-900"
             >
-              薪资报告
+              AI生成简历
             </router-link>
           </div>
         </div>

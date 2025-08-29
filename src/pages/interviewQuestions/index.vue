@@ -21,27 +21,20 @@
         </p>
       </div>
 
-      <!-- 题库内容 -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- 题目分类卡片 -->
-        <router-link
-          v-for="category in categories"
-          :key="category.id"
-          :to="`/interview-questions/${category.id}`"
-          class="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow duration-300"
+      <!-- 题库内容（占位） -->
+      <div class="bg-white overflow-hidden shadow rounded-lg p-8 text-center">
+        <p class="text-gray-700 mb-6">
+          题库正在整理中，现暂提供飞书文档地址占位，稍后上线完整题库。
+        </p>
+        <a
+          href="https://ts79eulyh8.feishu.cn/docx/LNgBdwRxyo2nzcxD5uycboylnHf"
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
         >
-          <div class="px-4 py-5 sm:p-6">
-            <div class="flex items-center">
-              <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
-                <i :class="category.icon" class="text-white text-xl"></i>
-              </div>
-              <div class="ml-5 w-0 flex-1">
-                <h3 class="text-lg font-medium text-gray-900">{{ category.name }}</h3>
-                <p class="mt-1 text-sm text-gray-500">{{ category.count }}道题目</p>
-              </div>
-            </div>
-          </div>
-        </router-link>
+          前往飞书题库
+          <span class="ml-2">↗</span>
+        </a>
       </div>
     </div>
   </div>

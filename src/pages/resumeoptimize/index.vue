@@ -59,8 +59,8 @@
               复制
             </button>
           </div>
-          <div class="bg-gray-50 rounded-xl p-4 sm:p-5 md:p-6 shadow-inner max-h-[50vh] sm:max-h-[60vh] overflow-y-auto border border-gray-200">
-            <div class="whitespace-pre-wrap text-gray-700 text-left text-sm sm:text-base leading-relaxed" v-html="parsedResume"></div>
+          <div class="resume-result-container bg-gray-50 rounded-xl p-4 sm:p-5 md:p-6 shadow-inner border border-gray-200 flex-shrink-0">
+            <div class="resume-result-content whitespace-pre-wrap text-gray-700 text-left text-sm sm:text-base leading-relaxed" v-html="parsedResume"></div>
           </div>
         </div>
       </div>
@@ -75,7 +75,7 @@
             </span>
           </div>
           
-          <div v-if="suggestions.length" class="space-y-4">
+          <div v-if="suggestions.length" class="space-y-4 max-h-[400px] sm:max-h-[500px] md:max-h-[600px] overflow-y-auto pr-2">
             <div v-for="(section, sectionIndex) in suggestions" :key="sectionIndex" class="border border-gray-200 rounded-lg p-3 sm:p-4 hover:shadow-md transition-shadow duration-200">
               <h3 class="text-sm font-semibold text-blue-700 mb-2 flex items-center gap-2">
                 <span class="inline-block w-2 h-2 bg-blue-500 rounded-full"></span>
@@ -206,7 +206,6 @@ export default {
         const data = await response.json()
         const res = JSON.parse(data.data)
         this.suggestions = Array.isArray(res) ? res : (res.result || [])
-        console.log(this.suggestions)
       } catch (error) {
         console.error('获取建议时出错:', error)
         alert('获取建议失败，请重试')
@@ -296,5 +295,58 @@ export default {
 /* 确保滚动区域在移动端有良好的体验 */
 .overflow-y-auto {
     -webkit-overflow-scrolling: touch;
+}
+
+/* 自定义滚动条样式 */
+.overflow-y-auto::-webkit-scrollbar {
+    width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* 移动端滚动条优化 */
+@media (max-width: 640px) {
+    .overflow-y-auto::-webkit-scrollbar {
+        width: 4px;
+    }
+}
+
+/* 强制限制解析结果容器高度 */
+.resume-result-container {
+    height: 300px !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+}
+
+@media (min-width: 640px) {
+    .resume-result-container {
+        height: 400px !important;
+        max-height: 400px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .resume-result-container {
+        height: 500px !important;
+        max-height: 500px !important;
+    }
+}
+
+/* 确保内容不会撑开容器 */
+.resume-result-content {
+    height: 100% !important;
+    overflow-y: auto !important;
 }
 </style>

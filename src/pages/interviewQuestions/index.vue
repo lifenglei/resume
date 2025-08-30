@@ -10,27 +10,26 @@
 <!-- views/InterviewQuestions.vue -->
 <template>
   <div class="min-h-screen bg-gray-50">
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="text-center mb-12">
-        <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <div class="text-center mb-8 sm:mb-12">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 sm:tracking-tight">
           前端面试题库
         </h1>
-        <p class="mt-5 max-w-xl mx-auto text-xl text-gray-500">
+        <p class="mt-3 sm:mt-5 max-w-xl mx-auto text-lg sm:text-xl text-gray-500 px-4 sm:px-0">
           精选高频面试题，助力前端开发者求职
         </p>
       </div>
 
       <!-- 题库内容（占位） -->
-      <div class="bg-white overflow-hidden shadow rounded-lg p-8 text-center">
-        <p class="text-gray-700 mb-6">
+      <div class="bg-white overflow-hidden shadow rounded-lg p-4 sm:p-6 lg:p-8 text-center">
+        <p class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
           题库正在整理中，现暂提供飞书文档地址占位，稍后上线完整题库。
         </p>
         <a
           href="https://ts79eulyh8.feishu.cn/docx/LNgBdwRxyo2nzcxD5uycboylnHf"
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+          class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200 w-full sm:w-auto justify-center"
         >
           前往飞书题库
           <span class="ml-2">↗</span>
@@ -41,11 +40,9 @@
 </template>
 
 <script>
-
 export default {
   name: 'InterviewQuestions',
   components: {
-
   },
   data () {
     return {
@@ -91,3 +88,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+/* 移动端优化 */
+@media (max-width: 640px) {
+  /* 确保按钮在移动端有足够的点击区域 */
+  a {
+    min-height: 44px;
+  }
+}
+</style>

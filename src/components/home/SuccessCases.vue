@@ -7,38 +7,38 @@
  *
 -->
 <template>
-  <div class="py-12 bg-gray-50">
+  <div class="py-8 sm:py-12 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="lg:text-center">
-        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+      <div class="text-center">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 lg:text-4xl">
           成功案例
         </h2>
-        <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+        <p class="mt-3 sm:mt-4 max-w-2xl text-lg sm:text-xl text-gray-500 mx-auto px-4 sm:px-0">
           经过我们辅导的学员平均面试邀请率提升3倍
         </p>
       </div>
 
-      <div class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-8 sm:mt-10 grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-3">
         <div
           v-for="(successCase, index) in successCases"
           :key="index"
           class="resume-card bg-white overflow-hidden shadow rounded-lg"
         >
-          <div class="px-4 py-5 sm:p-6">
+          <div class="px-4 py-4 sm:px-6 sm:py-5">
             <div class="flex items-center">
-              <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
-                <i :class="successCase.icon + ' text-white text-xl'"></i>
+              <div class="flex-shrink-0 bg-indigo-500 rounded-md p-2 sm:p-3">
+                <i :class="successCase.icon + ' text-white text-lg sm:text-xl'"></i>
               </div>
-              <div class="ml-5 w-0 flex-1">
-                <h3 class="text-lg font-medium text-gray-900">{{ successCase.name }}</h3>
-                <p class="text-sm text-gray-500">{{ successCase.experience }} | {{ successCase.location }}</p>
+              <div class="ml-3 sm:ml-5 w-0 flex-1">
+                <h3 class="text-base sm:text-lg font-medium text-gray-900">{{ successCase.name }}</h3>
+                <p class="text-xs sm:text-sm text-gray-500">{{ successCase.experience }} | {{ successCase.location }}</p>
               </div>
             </div>
-            <div class="mt-4">
-              <p class="text-gray-600">
+            <div class="mt-3 sm:mt-4">
+              <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
                 "{{ successCase.testimonial }}"
               </p>
-              <div class="mt-4 flex items-center text-sm text-gray-500">
+              <div class="mt-3 sm:mt-4 flex items-center text-xs sm:text-sm text-gray-500">
                 <i class="fas fa-check-circle text-green-500 mr-2"></i>
                 <span>重点优化：{{ successCase.optimization }}</span>
               </div>
@@ -85,3 +85,21 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.resume-card {
+  transition: all 0.3s ease;
+}
+
+.resume-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* 移动端优化 */
+@media (max-width: 640px) {
+  .resume-card:hover {
+    transform: none;
+  }
+}
+</style>

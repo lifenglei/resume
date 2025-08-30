@@ -8,73 +8,90 @@
  *
 -->
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6">
-    <div class="flex w-full max-w-6xl">
+  <div class="flex flex-col items-center justify-start min-h-screen bg-gray-50 p-3 sm:p-4 md:p-6" style="margin-top: 100px;">
+    <div class="flex flex-col lg:flex-row w-full max-w-7xl gap-3 sm:gap-4 lg:gap-6">
       <!-- 左侧容器 -->
-      <div class="w-[70%] mr-4 bg-white shadow-lg rounded-lg p-8">
-        <div class="flex justify-between items-center mb-6">
-          <h1 class="text-4xl font-bold text-blue-700">简历优化</h1>
-          <button @click="getSuggestions" class="flex items-center gap-2 bg-gradient-to-r from-green-400 to-green-600 text-white px-6 py-3 rounded-lg hover:shadow-lg active:scale-[0.98] transition duration-200">
+      <div class="w-full lg:w-[65%] xl:w-[70%] bg-white shadow-xl rounded-xl p-4 sm:p-5 md:p-6 lg:p-8">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-4">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-700 leading-tight">简历优化</h1>
+          <button @click="getSuggestions" class="flex items-center justify-center gap-2 bg-gradient-to-r from-green-400 to-green-600 text-white px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl hover:shadow-lg active:scale-[0.98] transition-all duration-200 text-sm sm:text-base font-medium w-full sm:w-auto min-h-[44px] touch-manipulation">
             <template v-if="loading2">
-              <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <svg class="animate-spin h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
               </svg>
               <span>加载中...</span>
             </template>
             <span v-else class="flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
               增加修改建议
             </span>
           </button>
         </div>
 
-        <input type="file" @change="handleFileUpload" class="mb-6 border border-gray-200 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white" />
-
-        <button @click="parseResume" :disabled="loading" class="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-3 rounded-lg mb-6 hover:shadow-lg active:scale-[0.98] transition duration-200 disabled:opacity-60 disabled:cursor-not-allowed" v-if="!parsedResume">
-          <template v-if="loading">
-            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-            </svg>
-            <span>加载中...</span>
-          </template>
-          <span v-else class="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h8M8 8h8M8 16h8"/></svg>
-            解析简历
-          </span>
-        </button>
-
-        <div v-if="parsedResume" class="mt-8">
-          <h2 class="text-2xl font-semibold text-gray-800">解析结果</h2>
-          <div class="bg-gray-100 rounded-lg p-6 shadow-inner max-h-96 overflow-y-auto">
-            <div class="whitespace-pre-wrap text-gray-700 text-left" v-html="parsedResume"></div>
+        <div class="space-y-4 sm:space-y-5">
+          <div class="relative">
+            <label class="block text-sm font-medium text-gray-700 mb-2">上传简历文件</label>
+            <input type="file" @change="handleFileUpload" class="block w-full text-sm sm:text-base text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 cursor-pointer" accept=".pdf,.doc,.docx,.txt" />
+            <p class="mt-1 text-xs text-gray-500">支持 PDF、Word、TXT 格式</p>
           </div>
-          <!-- <button @click="copyResult" class="mt-4 flex items-center gap-2 bg-gradient-to-r from-purple-500 to-purple-700 text-white px-6 py-3 rounded-lg hover:shadow-lg active:scale-[0.98] transition duration-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-            复制结果
-          </button> -->
+
+          <button @click="parseResume" :disabled="loading || !uploadedFile" class="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl hover:shadow-lg active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed w-full sm:w-auto min-h-[44px] touch-manipulation" v-if="!parsedResume">
+            <template v-if="loading">
+              <svg class="animate-spin h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+              </svg>
+              <span>加载中...</span>
+            </template>
+            <span v-else class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h8M8 8h8M8 16h8"/></svg>
+              解析简历
+            </span>
+          </button>
+        </div>
+
+        <div v-if="parsedResume" class="mt-6 sm:mt-8">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">解析结果</h2>
+            <button @click="copyResult" class="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              复制
+            </button>
+          </div>
+          <div class="bg-gray-50 rounded-xl p-4 sm:p-5 md:p-6 shadow-inner max-h-[50vh] sm:max-h-[60vh] overflow-y-auto border border-gray-200">
+            <div class="whitespace-pre-wrap text-gray-700 text-left text-sm sm:text-base leading-relaxed" v-html="parsedResume"></div>
+          </div>
         </div>
       </div>
 
       <!-- 右侧容器 -->
-      <div class="w-[30%] bg-white shadow-lg rounded-lg p-8 sticky top-6 h-[calc(100vh-3rem)] overflow-y-auto">
-        <div v-if="suggestions.length" class="mt-2">
-          <h2 class="text-2xl font-semibold text-gray-800">建议结果</h2>
-          <div v-for="(section, sectionIndex) in suggestions" :key="sectionIndex" class="mt-4 border-b border-gray-200 pb-4">
-            <h3 class="text-base font-medium text-blue-700">
-              <span class="inline-block bg-blue-50 text-blue-700 px-2 py-1 rounded">{{ section.section }}</span>
-            </h3>
-            <div v-if="section.content">
-              <!-- 内容为数组 -->
-              <p>{{ section.content }}</p>
+      <div class="w-full lg:w-[35%] xl:w-[30%] bg-white shadow-xl rounded-xl p-4 sm:p-5 md:p-6 lg:p-8">
+        <div class="sticky top-4">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">优化建议</h2>
+            <span v-if="suggestions.length" class="text-xs font-medium px-2 py-1 bg-green-100 text-green-800 rounded-full">
+              {{ suggestions.length }} 条
+            </span>
+          </div>
+          
+          <div v-if="suggestions.length" class="space-y-4">
+            <div v-for="(section, sectionIndex) in suggestions" :key="sectionIndex" class="border border-gray-200 rounded-lg p-3 sm:p-4 hover:shadow-md transition-shadow duration-200">
+              <h3 class="text-sm font-semibold text-blue-700 mb-2 flex items-center gap-2">
+                <span class="inline-block w-2 h-2 bg-blue-500 rounded-full"></span>
+                {{ section.section }}
+              </h3>
+              <div v-if="section.content" class="text-sm text-gray-700 leading-relaxed">
+                <p class="break-words">{{ section.content }}</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div v-else class="mt-6 flex flex-col items-center text-center text-gray-500">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h9.5a2 2 0 001.6-.8l3.5-4.667a2 2 0 00.4-1.2V4a2 2 0 00-2-2H6zm0 2h12v11h-3a2 2 0 00-2 2v3H6V4zm9 16.25V17a.75.75 0 01.75-.75H20l-5 4z"/></svg>
-          <p class="mt-2">暂无建议结果</p>
-          <p class="text-xs">上传简历并点击“解析简历”，再获取建议</p>
+          
+          <div v-else class="flex flex-col items-center text-center text-gray-500 py-8">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 sm:h-16 sm:w-16 text-gray-300 mb-4" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h9.5a2 2 0 001.6-.8l3.5-4.667a2 2 0 00.4-1.2V4a2 2 0 00-2-2H6zm0 2h12v11h-3a2 2 0 00-2 2v3H6V4zm9 16.25V17a.75.75 0 01.75-.75H20l-5 4z"/></svg>
+            <p class="text-sm sm:text-base font-medium mb-2">暂无建议结果</p>
+            <p class="text-xs sm:text-sm text-gray-400">上传简历并点击"解析简历"，再获取建议</p>
+          </div>
         </div>
       </div>
     </div>
@@ -230,7 +247,7 @@ export default {
         .filter(Boolean)
       return parts
     },
-    // 新增：拆分“标签：值”的结构
+    // 新增：拆分"标签：值"的结构
     splitLabelValue (line) {
       if (!line) return { label: '', value: '' }
       const idx = line.indexOf('：')
@@ -242,9 +259,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
-/* 这里可以添加自定义样式 */
+/* 移动端优化样式 */
 .suggestion-title {
-    font-size: 18px; /* 标题字体大小 */
+    font-size: 16px; /* 标题字体大小 */
     font-weight: bold;
     color: #1E3A8A; /* 标题颜色 */
 }
@@ -253,5 +270,31 @@ export default {
     font-size: 14px; /* 正文字体大小 */
     color: #555; /* 正文颜色 */
     line-height: 1.5; /* 行间距 */
+}
+
+/* 移动端响应式优化 */
+@media (max-width: 640px) {
+    .suggestion-title {
+        font-size: 14px;
+    }
+    
+    .suggestion-content {
+        font-size: 12px;
+    }
+    
+    /* 确保按钮在移动端有足够的点击区域 */
+    button {
+        min-height: 44px;
+    }
+    
+    /* 优化文件上传按钮 */
+    input[type="file"] {
+        min-height: 44px;
+    }
+}
+
+/* 确保滚动区域在移动端有良好的体验 */
+.overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
 }
 </style>

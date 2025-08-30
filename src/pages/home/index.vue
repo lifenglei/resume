@@ -13,7 +13,7 @@
     <Features />
     <SuccessCases />
     <Cta />
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 
@@ -37,20 +37,83 @@ export default {
 </script>
 
 <style>
+/* 全局样式优化 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  overflow-x: hidden; /* 防止水平滚动 */
+}
 
 .gradient-bg {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
+
 .code-block {
   font-family: 'SF Mono', Menlo, monospace;
   background: rgba(0,0,0,0.7);
   border-left: 3px solid #4fd1c5;
 }
+
 .resume-card {
   transition: all 0.3s ease;
 }
+
 .resume-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* 移动端优化 */
+@media (max-width: 640px) {
+  .resume-card:hover {
+    transform: none;
+  }
+  
+  /* 确保所有文本在小屏幕上都有合适的行高 */
+  p, h1, h2, h3, h4, h5, h6 {
+    line-height: 1.5;
+  }
+  
+  /* 优化按钮和链接的触摸区域 */
+  button, a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* 确保图片响应式 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 优化滚动体验 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 防止移动端缩放问题 */
+@media screen and (max-width: 640px) {
+  html {
+    font-size: 16px;
+  }
 }
 </style>

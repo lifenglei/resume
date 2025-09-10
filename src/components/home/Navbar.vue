@@ -46,14 +46,7 @@
               <div class="absolute inset-0 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg opacity-0 transition-opacity duration-200" :class="{'opacity-100': $route.path === '/resume-optimize'}"></div>
             </router-link>
             
-            <router-link
-              to="/interview-questions"
-              class="relative px-4 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors duration-200 rounded-lg hover:bg-gray-50"
-              active-class="text-indigo-600 bg-indigo-50"
-            >
-              <span class="relative z-10">面试题库</span>
-              <div class="absolute inset-0 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg opacity-0 transition-opacity duration-200" :class="{'opacity-100': $route.path === '/interview-questions'}"></div>
-            </router-link>
+          
             
             <router-link
               to="/salary-report"
@@ -62,6 +55,14 @@
             >
               <span class="relative z-10">AI生成简历</span>
               <div class="absolute inset-0 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg opacity-0 transition-opacity duration-200" :class="{'opacity-100': $route.path === '/salary-report'}"></div>
+            </router-link>
+            <router-link
+              to="/donate"
+              class="relative animate-bounce px-4 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors duration-200 rounded-lg hover:bg-gray-50"
+              active-class="text-indigo-600 bg-indigo-50"
+            >
+              <span class="relative z-10 text-red-500" style="font-size: 18px;">打赏</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg opacity-0 transition-opacity duration-200" :class="{'opacity-100': $route.path === '/donate'}"></div>
             </router-link>
           </div>
 
@@ -156,17 +157,6 @@
             <i class="fas fa-magic mr-3 text-indigo-500"></i>
             AI简历优化
           </router-link>
-          
-          <router-link
-            to="/interview-questions"
-            class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 rounded-lg transition-all duration-200"
-            active-class="text-indigo-600 bg-indigo-50"
-            @click.native="closeMobileMenu"
-          >
-            <i class="fas fa-graduation-cap mr-3 text-indigo-500"></i>
-            面试题库
-          </router-link>
-          
           <router-link
             to="/salary-report"
             class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 rounded-lg transition-all duration-200"
@@ -176,6 +166,15 @@
             <i class="fas fa-file-alt mr-3 text-indigo-500"></i>
             AI生成简历
           </router-link>
+          <router-link
+          to="/interview-questions"
+          class="flex items-center px-4 py-3 text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 rounded-lg transition-all duration-200"
+          active-class="text-indigo-600 bg-indigo-50"
+          @click.native="closeMobileMenu"
+        >
+          <i class="fas fa-graduation-cap mr-3 text-indigo-500"></i>
+          面试题库
+        </router-link>
           
           <!-- <div class="pt-4 border-t border-gray-100">
             <router-link

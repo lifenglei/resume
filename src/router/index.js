@@ -13,6 +13,7 @@ import home from '@/pages/home'
 import InterviewQuestions from '@/pages/interviewQuestions'
 import ResumeOoptimize from '@/pages/resumeoptimize'
 import SalaryReport from '@/pages/salaryreport'
+import Donate from '@/pages/donate'
 
 Vue.use(Router)
 
@@ -53,6 +54,14 @@ export default new Router({
       component: SalaryReport,
       meta: {
         title: '薪资报告'
+      }
+    },
+    {
+      path: '/donate',
+      name: 'donate',
+      component: Donate,
+      meta: {
+        title: '打赏支持'
       }
     }
   ]

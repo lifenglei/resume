@@ -14,6 +14,13 @@
     <SuccessCases />
     <Cta />
     <!-- <Footer /> -->
+    <a
+      class="github-link"
+      href="https://github.com/lifenglei/resume"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="View source on GitHub"
+    >GitHub</a>
   </div>
 </template>
 
@@ -58,6 +65,31 @@ body {
   text-align: center;
   color: #2c3e50;
   overflow-x: hidden; /* 防止水平滚动 */
+}
+
+/* GitHub 按钮 */
+.github-link {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  background: #24292e;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.github-link:hover {
+  background: #2f363d;
+}
+
+.github-link:active {
+  transform: translateY(1px);
 }
 
 .gradient-bg {

@@ -243,7 +243,7 @@
 </template>
 
 <script>
-const apiKey = 'pat_D8vhiHgR6HQMWPMZewxlDEvCTu4xodXKdLJTrENSzNphwYyH5avF3wxulR0DtxHH'
+const apiKey = 'pat_sAdVrshNxB38Yuko2Pdpc6GSt8kI8dxT38cYBZNOpf16s69nEuu55JrrE9x5ocEZ'
 const workflowId = '7543892071598800948' // 简历解析
 const workflowId2 = '7488891332678254655' // 简历建议
 export default {

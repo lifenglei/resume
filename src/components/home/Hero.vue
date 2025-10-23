@@ -26,6 +26,47 @@
         </div>
       </div>
     </div>
+    <div class="hidden lg:block">
+      <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+        <div class="bg-white rounded-xl p-6 shadow-2xl">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-gray-900 font-semibold">面试邀请率</span>
+            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">+250%</span>
+          </div>
+          <div class="relative h-48">
+            <svg viewBox="0 0 300 150" class="w-full h-full">
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.3" />
+                  <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0" />
+                </linearGradient>
+              </defs>
+              <path d="M 0 120 Q 50 100 75 80 T 150 50 T 225 20 T 300 10" 
+                    stroke="#3b82f6" 
+                    stroke-width="3" 
+                    fill="none" 
+                    stroke-linecap="round"/>
+              <path d="M 0 120 Q 50 100 75 80 T 150 50 T 225 20 T 300 10 L 300 150 L 0 150 Z" 
+                    fill="url(#gradient)"/>
+            </svg>
+          </div>
+          <div class="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-gray-200">
+            <div>
+              <div class="text-2xl font-bold text-gray-900">85%</div>
+              <div class="text-xs text-gray-600">优化前</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold text-blue-700">98%</div>
+              <div class="text-xs text-gray-600">优化后</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold text-green-600">+13%</div>
+              <div class="text-xs text-gray-600">提升率</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

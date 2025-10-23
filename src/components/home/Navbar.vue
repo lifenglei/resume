@@ -16,11 +16,10 @@
           <div class="flex items-center">
             <div class="flex-shrink-0 flex items-center group">
               <div class="relative">
-                <i class="fas fa-code text-2xl text-indigo-600 mr-2 transition-transform duration-300 group-hover:scale-110"></i>
                 <div class="absolute -inset-1 bg-indigo-400 rounded-full opacity-20 blur-md group-hover:opacity-30 transition-opacity duration-300"></div>
               </div>
               <router-link to="/" class="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent hover:from-indigo-700 hover:to-purple-700 transition-all duration-300">
-                FrontEnd Career
+                <span class="font-bold text-xl text-primary"> 简历助手 </span>
               </router-link>
             </div>
           </div>

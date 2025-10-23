@@ -14,13 +14,6 @@
     <SuccessCases />
     <Cta />
     <!-- <Footer /> -->
-    <a
-      class="github-link"
-      href="https://github.com/lifenglei/resume"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="View source on GitHub"
-    >GitHub</a>
   </div>
 </template>
 

@@ -9,10 +9,11 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "deploy":"gh-pages -d dist -r https://github.com/lifenglei/resume.git -b gh-pages"
+    "deploy": "gh-pages -d dist -r https://github.com/lifenglei/resume.git -b gh-pages"
   },
   "dependencies": {
     "gh-pages": "^6.3.0",
+    "swiper": "^6.8.4",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

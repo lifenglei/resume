@@ -3,10 +3,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 lg:text-4xl">
-          为什么选择我
+          我们的服务
         </h2>
         <p class="mt-3 sm:mt-4 max-w-2xl text-lg sm:text-xl text-gray-500 mx-auto px-4 sm:px-0">
-          资深前端工程师 · 一对一辅导 · 深入了解前端招聘标准
+          利用人工智能技术，为你提供全方位的简历优化服务，从修改到生成，一站式解决你的求职需求
         </p>
       </div>
 

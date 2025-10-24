@@ -71,7 +71,55 @@
           </div>
 
           <!-- 桌面端CTA按钮 -->
-          <div class="hidden md:flex md:items-center">
+          <div class="hidden md:flex md:items-center md:space-x-3">
+            <!-- 未登录状态显示登录按钮 -->
+            <router-link
+              v-if="!currentUser"
+              to="/login"
+              class="relative px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+              active-class="text-white bg-indigo-600"
+            >
+              <span class="relative z-10">登录</span>
+              <div class="absolute inset-0 bg-white rounded-lg opacity-0 hover:opacity-10 transition-opacity duration-300"></div>
+            </router-link>
+
+            <!-- 已登录状态显示用户头像 -->
+            <div v-else class="relative">
+              <button
+                @click="toggleUserDropdown"
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium text-sm hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                <span class="text-sm font-medium">{{ getUserAvatar() }}</span>
+              </button>
+
+              <!-- 用户下拉菜单 -->
+              <transition
+                enter-active-class="transition duration-200 ease-out"
+                enter-from-class="transform opacity-0 scale-95"
+                enter-to-class="transform opacity-100 scale-100"
+                leave-active-class="transition duration-150 ease-in"
+                leave-from-class="transform opacity-100 scale-100"
+                leave-to-class="transform opacity-0 scale-95"
+              >
+                <div
+                  v-if="showUserDropdown"
+                  class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50"
+                >
+                  <div class="px-4 py-2 text-sm text-gray-700 border-b border-gray-100">
+                    <div class="font-medium">{{ currentUser.email }}</div>
+                    <div class="text-xs text-gray-500">{{ currentUser.email }}</div>
+                  </div>
+                  <button
+                    @click="handleLogout"
+                    class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150"
+                  >
+                    <i class="fas fa-sign-out-alt mr-2"></i>
+                    退出登录
+                  </button>
+                </div>
+              </transition>
+            </div>
+
             <router-link
               to="/resume-optimize"
               class="relative px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
@@ -179,7 +227,39 @@
           <i class="fas fa-graduation-cap mr-3 text-indigo-500"></i>
           面试题库
         </router-link>
-          
+
+          <!-- 移动端未登录状态 -->
+          <router-link
+            v-if="!currentUser"
+            to="/login"
+            class="flex items-center px-4 py-3 text-base font-medium text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-md"
+            active-class="text-white bg-indigo-600"
+            @click.native="closeMobileMenu"
+          >
+            <i class="fas fa-sign-in-alt mr-3 text-white"></i>
+            登录
+          </router-link>
+
+          <!-- 移动端已登录状态 -->
+          <div v-else class="pt-3 border-t border-gray-100">
+            <div class="flex items-center px-4 py-2 mb-2">
+              <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium text-xs mr-3">
+                <span class="text-xs">{{ getUserAvatar() }}</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="text-sm font-medium text-gray-900 truncate">{{ currentUser.email }}</div>
+                <div class="text-xs text-gray-500 truncate">{{ currentUser.email }}</div>
+              </div>
+            </div>
+            <button
+              @click="handleLogout(); closeMobileMenu()"
+              class="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-150"
+            >
+              <i class="fas fa-sign-out-alt mr-3"></i>
+              退出登录
+            </button>
+          </div>
+
           <!-- <div class="pt-4 border-t border-gray-100">
             <router-link
               to="/resume-optimize"
@@ -197,12 +277,16 @@
 </template>
 
 <script>
+import authService from '@/services/authService'
+
 export default {
   name: 'Navbar',
   data() {
     return {
       isMobileMenuOpen: false,
-      isScrolled: false
+      isScrolled: false,
+      currentUser: null,
+      showUserDropdown: false
     }
   },
   methods: {
@@ -223,28 +307,85 @@ export default {
     },
     handleScroll() {
       this.isScrolled = window.scrollY > 10
+    },
+    // 获取用户信息
+    getCurrentUser() {
+      this.currentUser = authService.getCurrentUser()
+    },
+    // 切换用户下拉菜单
+    toggleUserDropdown() {
+      this.showUserDropdown = !this.showUserDropdown
+    },
+    // 关闭用户下拉菜单
+    closeUserDropdown() {
+      this.showUserDropdown = false
+    },
+    // 处理退出登录
+    async handleLogout() {
+      try {
+        const result = await authService.signOut()
+        if (result.success) {
+          this.currentUser = null
+          this.showUserDropdown = false
+          this.$router.push('/')
+        }
+      } catch (error) {
+        console.error('退出登录失败:', error)
+      }
+    },
+    // 获取用户头像或首字母
+    getUserAvatar() {
+      if (!this.currentUser) return ''
+
+      // 返回邮箱首字母作为头像
+      return  'D'
     }
   },
   mounted() {
+    // 获取当前用户信息
+    this.getCurrentUser()
+
+    // 监听认证状态变化
+    this.unsubscribeAuth = authService.onAuthStateChange((event, session) => {
+      this.getCurrentUser()
+    })
+
     // 监听窗口大小变化
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         this.closeMobileMenu()
+        this.closeUserDropdown()
       }
     }
-    
+
     // 监听滚动
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', handleResize)
-    
+
+    // 点击外部关闭下拉菜单
+    this.handleClickOutside = (event) => {
+      if (!this.$el.contains(event.target)) {
+        this.closeUserDropdown()
+      }
+    }
+    document.addEventListener('click', this.handleClickOutside)
+
     // 保存事件处理器以便清理
     this._handleResize = handleResize
   },
   beforeDestroy() {
+    // 清理认证状态监听
+    if (this.unsubscribeAuth) {
+      this.unsubscribeAuth()
+    }
+
     // 清理事件监听器
     window.removeEventListener('scroll', this.handleScroll)
     if (this._handleResize) {
       window.removeEventListener('resize', this._handleResize)
+    }
+    if (this.handleClickOutside) {
+      document.removeEventListener('click', this.handleClickOutside)
     }
     document.body.style.overflow = ''
   }
@@ -278,5 +419,38 @@ nav {
 /* 滚动时的导航栏样式 */
 nav.scrolled {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 用户下拉菜单样式 */
+.user-dropdown {
+  transform-origin: top right;
+}
+
+/* 头像按钮样式 */
+.avatar-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-button img {
+  transition: transform 0.2s ease;
+}
+
+.avatar-button:hover img {
+  transform: scale(1.05);
+}
+
+/* 下拉菜单项样式 */
+.dropdown-item {
+  transition: all 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f9fafb;
+}
+
+/* 移动端用户信息样式 */
+.mobile-user-info {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 </style>

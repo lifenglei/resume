@@ -36,6 +36,9 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      // 强制使用UMD构建版本（仅对存在的文件）
+      '@supabase/supabase-js$': resolve('node_modules/@supabase/supabase-js/dist/umd/supabase.js'),
+      '@supabase/storage-js$': resolve('node_modules/@supabase/storage-js/dist/umd/supabase.js')
     }
   },
   module: {
@@ -49,7 +52,14 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        include: [
+          resolve('src'),
+          resolve('test'),
+          resolve('node_modules/webpack-dev-server/client'),
+          resolve('node_modules/@supabase'),
+          resolve('node_modules/@supabase/postgrest-js'),
+          resolve('node_modules/@supabase/supabase-js')
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

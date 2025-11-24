@@ -60,7 +60,7 @@
               </svg>
               {{ loading ? 'AI 正在生成...' : '开始生成简历' }}
             </button>
-            
+
             <div v-if="loading" class="text-sm text-gray-600">
               <div class="flex items-center gap-2">
                 <div class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
@@ -78,7 +78,7 @@
             </svg>
             生成结果
           </h3>
-          
+
           <div v-if="imageUrl" class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
             <div class="text-center">
               <div class="mb-4">
@@ -88,7 +88,7 @@
                 <h4 class="text-lg font-medium text-gray-900">简历生成完成！</h4>
                 <p class="text-sm text-gray-600 mt-1">点击下方按钮查看或下载您的专业简历</p>
               </div>
-              
+
               <a
                 :href="imageUrl"
                 target="_blank"
@@ -101,7 +101,7 @@
               </a>
             </div>
           </div>
-          
+
           <div v-else class="text-center py-8">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
               <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -124,7 +124,7 @@
 </template>
 
 <script>
-const apiKey = 'pat_c2W6F3fuDCGmnFsYXvnHphOS40BUBC4XiDL9YENJV107ooGJGvrprrwPQl4H6DOY'
+const apiKey = 'pat_Q0KamTWwnK4xe3WSfO3xq1kwkLaTONcDbjj71hUZgyMY68TFy3YNUrmD2is4SBGx'
 const workflowId = '7540938263634116660'
 export default {
   data () {
@@ -228,11 +228,11 @@ textarea::-webkit-scrollbar-thumb:hover {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   h1 {
     font-size: 2rem;
   }
-  
+
   .p-6, .p-8, .p-10 {
     padding: 1.5rem;
   }
@@ -249,7 +249,7 @@ textarea::-webkit-scrollbar-thumb:hover {
   button {
     min-height: 44px;
   }
-  
+
   a {
     min-height: 44px;
     display: inline-flex;

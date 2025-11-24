@@ -2,8 +2,8 @@
  * @Author: lifenglei 1125911451@qq.com
  * @Date: 2025-04-08 14:07:45
  * @LastEditors: lifenglei 1125911451@qq.com
- * @LastEditTime: 2025-04-08 15:17:20
- * @FilePath: /jd/resume/src/pages/question/index.vue
+ * @LastEditTime: 2025-11-24 19:53:38
+ * @FilePath: /resume/src/pages/question/index.vue
  * @Description:
  *
 -->
@@ -21,13 +21,13 @@
         <p v-if="item.showAnswer" class="mt-3 sm:mt-4 text-sm sm:text-base text-gray-700 leading-relaxed">{{ item.answer }}</p>
       </li>
     </ul>
-    
+
     <!-- 加载状态 -->
     <div v-if="loading" class="text-center py-8">
       <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
       <p class="mt-2 text-gray-500">加载中...</p>
     </div>
-    
+
     <!-- 空状态 -->
     <div v-if="!loading && questions.length === 0" class="text-center py-8">
       <p class="text-gray-500">暂无面试题</p>
@@ -41,7 +41,7 @@ export default {
     return {
       questions: [],
       loading: false,
-      apiKey: 'pat_c2W6F3fuDCGmnFsYXvnHphOS40BUBC4XiDL9YENJV107ooGJGvrprrwPQl4H6DOY', // 替换为您的 API Key
+      apiKey: 'pat_Q0KamTWwnK4xe3WSfO3xq1kwkLaTONcDbjj71hUZgyMY68TFy3YNUrmD2is4SBGx', // 替换为您的 API Key
       workflowId: '7490816748992823337' // 替换为您的 workflow ID
     }
   },
@@ -101,7 +101,7 @@ export default {
     min-height: 44px;
     padding: 8px 12px;
   }
-  
+
   /* 优化卡片间距 */
   li {
     margin-bottom: 12px;

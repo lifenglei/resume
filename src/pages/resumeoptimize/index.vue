@@ -1,9 +1,9 @@
 <!--
  * @Author: lifenglei 1125911451@qq.com
  * @Date: 2025-03-27 15:36:54
- * @LastEditors: 李风磊 lifenglei@cestc.cn
- * @LastEditTime: 2025-04-03 10:49:11
- * @FilePath: /jd/resume/src/pages/resumeoptimize/index.vue
+ * @LastEditors: lifenglei 1125911451@qq.com
+ * @LastEditTime: 2025-11-24 19:53:42
+ * @FilePath: /resume/src/pages/resumeoptimize/index.vue
  * @Description:
  *
 -->
@@ -74,7 +74,7 @@
               {{ suggestions.length }} 条
             </span>
           </div>
-          
+
           <!-- 优化后的建议展示区域 -->
           <div v-if="suggestions.length" class="space-y-3 max-h-[600px] overflow-y-auto pr-2">
             <!-- 评分卡片 -->
@@ -111,7 +111,7 @@
                   <div class="text-sm text-green-700 leading-relaxed bg-white p-3 rounded border border-green-100">
                     {{ getSummarySection().content }}
                   </div>
-                  <button @click="copySectionContent(getSummarySection().content)" 
+                  <button @click="copySectionContent(getSummarySection().content)"
                           class="mt-2 text-xs text-green-600 hover:text-green-800 font-medium flex items-center gap-1">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
@@ -123,10 +123,10 @@
             </div>
 
             <!-- 其他建议卡片 -->
-            <div v-for="(section, sectionIndex) in getOtherSections()" :key="sectionIndex" 
+            <div v-for="(section, sectionIndex) in getOtherSections()" :key="sectionIndex"
                  class="border border-gray-200 rounded-lg hover:shadow-md transition-all duration-200"
                  :class="getSectionStyle(section.section)">
-              
+
               <!-- 卡片头部 -->
               <div class="p-4 pb-3 cursor-pointer" @click="toggleSection(sectionIndex)">
                 <div class="flex items-start justify-between">
@@ -165,7 +165,7 @@
                     <span v-if="section.section === '优化建议'" class="text-xs px-2 py-1 bg-orange-100 text-orange-700 rounded-full">
                       {{ getOptimizationCount(section.content) }} 项
                     </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" 
+                    <svg xmlns="http://www.w3.org/2000/svg"
                          class="h-4 w-4 text-gray-400 transition-transform duration-200"
                          :class="{ 'rotate-180': expandedSections[sectionIndex] }"
                          fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -183,7 +183,7 @@
                          class="bg-white p-3 rounded border border-orange-100 hover:border-orange-200 transition-colors duration-200">
                       <h4 class="text-sm font-semibold text-orange-800 mb-2">{{ item.title }}</h4>
                       <ul class="space-y-1">
-                        <li v-for="(suggestion, subIdx) in item.suggestions" :key="subIdx" 
+                        <li v-for="(suggestion, subIdx) in item.suggestions" :key="subIdx"
                             class="text-xs text-gray-700 flex items-start gap-2">
                           <span class="inline-block w-1 h-1 bg-orange-400 rounded-full mt-2 flex-shrink-0"></span>
                           <span>{{ suggestion }}</span>
@@ -191,7 +191,7 @@
                       </ul>
                     </div>
                   </div>
-                  
+
                   <div v-else-if="section.section === '项目亮点'" class="space-y-3">
                     <div v-for="(project, idx) in parseProjectHighlights(section.content)" :key="idx"
                          class="bg-white p-3 rounded border border-purple-100 hover:border-purple-200 transition-colors duration-200">
@@ -209,15 +209,15 @@
                       </div>
                     </div>
                   </div>
-                  
+
                   <div v-else class="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">
                     {{ section.content }}
                   </div>
                 </div>
-                
+
                 <!-- 操作按钮 -->
                 <div class="flex gap-2 mt-3">
-                  <button @click="copySectionContent(section.content)" 
+                  <button @click="copySectionContent(section.content)"
                           class="text-xs text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 px-2 py-1 hover:bg-blue-50 rounded transition-colors duration-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
@@ -228,7 +228,7 @@
               </div>
             </div>
           </div>
-          
+
           <div v-else class="flex flex-col items-center text-center text-gray-500 py-8">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 sm:h-16 sm:w-16 text-gray-300 mb-4" viewBox="0 0 24 24" fill="currentColor">
               <path d="M6 2a2 2 0 00-2 2v16a2 2 0 002 2h9.5a2 2 0 001.6-.8l3.5-4.667a2 2 0 00.4-1.2V4a2 2 0 00-2-2H6zm0 2h12v11h-3a2 2 0 00-2 2v3H6V4zm9 16.25V17a.75.75 0 01.75-.75H20l-5 4z"/>
@@ -243,7 +243,7 @@
 </template>
 
 <script>
-const apiKey = 'pat_c2W6F3fuDCGmnFsYXvnHphOS40BUBC4XiDL9YENJV107ooGJGvrprrwPQl4H6DOY'
+const apiKey = 'pat_Q0KamTWwnK4xe3WSfO3xq1kwkLaTONcDbjj71hUZgyMY68TFy3YNUrmD2is4SBGx'
 const workflowId = '7543892071598800948' // 简历解析
 const workflowId2 = '7488891332678254655' // 简历建议
 export default {
@@ -398,35 +398,35 @@ export default {
       if (idx === -1) return { label: '', value: line }
       return { label: line.slice(0, idx), value: line.slice(idx + 1) }
     },
-    
+
     // 新增：获取评分部分
-    getScoreSection() {
+    getScoreSection () {
       return this.suggestions.find(s => s.section === '评分')
     },
-    
+
     // 新增：获取摘要重写部分
-    getSummarySection() {
+    getSummarySection () {
       return this.suggestions.find(s => s.section === '摘要重写')
     },
-    
+
     // 新增：获取其他部分
-    getOtherSections() {
+    getOtherSections () {
       return this.suggestions.filter(s => !['评分', '摘要重写'].includes(s.section))
     },
-    
+
     // 新增：提取评分
-    extractScore(content) {
+    extractScore (content) {
       const match = content.match(/(\d+)分/)
       return match ? match[1] : '0'
     },
-    
+
     // 新增：切换展开状态
-    toggleSection(index) {
+    toggleSection (index) {
       this.$set(this.expandedSections, index, !this.expandedSections[index])
     },
-    
+
     // 新增：复制单个部分内容
-    copySectionContent(content) {
+    copySectionContent (content) {
       navigator.clipboard.writeText(content)
         .then(() => {
           this.showToast('内容已复制到剪贴板！')
@@ -436,15 +436,15 @@ export default {
           this.showToast('复制失败，请重试', 'error')
         })
     },
-    
+
     // 新增：显示提示信息
-    showToast(message, type = 'success') {
+    showToast (message, type = 'success') {
       // 简单的提示实现，你可以替换为更好的toast组件
       alert(message)
     },
-    
+
     // 新增：获取部分样式
-    getSectionStyle(section) {
+    getSectionStyle (section) {
       const styles = {
         '优化建议': 'border-orange-200 bg-orange-50',
         '项目亮点': 'border-purple-200 bg-purple-50',
@@ -453,9 +453,9 @@ export default {
       }
       return styles[section] || 'bg-gray-50'
     },
-    
+
     // 新增：获取部分图标样式
-    getSectionIconStyle(section) {
+    getSectionIconStyle (section) {
       const styles = {
         '优化建议': 'bg-orange-100 text-orange-600',
         '项目亮点': 'bg-purple-100 text-purple-600',
@@ -464,9 +464,9 @@ export default {
       }
       return styles[section] || 'bg-gray-100 text-gray-600'
     },
-    
+
     // 新增：获取部分标题颜色
-    getSectionTitleColor(section) {
+    getSectionTitleColor (section) {
       const colors = {
         '优化建议': 'text-orange-800',
         '项目亮点': 'text-purple-800',
@@ -475,9 +475,9 @@ export default {
       }
       return colors[section] || 'text-gray-800'
     },
-    
+
     // 新增：获取部分描述
-    getSectionDescription(section) {
+    getSectionDescription (section) {
       const descriptions = {
         '优化建议': '格式、内容和表达方面的改进建议',
         '项目亮点': '项目经验的亮点总结',
@@ -486,9 +486,9 @@ export default {
       }
       return descriptions[section] || '详细建议内容'
     },
-    
+
     // 新增：获取部分图标
-    getSectionIcon(section) {
+    getSectionIcon (section) {
       // 返回SVG字符串或组件名
       const icons = {
         '优化建议': 'svg',
@@ -499,18 +499,18 @@ export default {
       // 这里简化处理，实际使用时可以返回具体的图标组件
       return 'svg'
     },
-    
+
     // 新增：获取优化建议数量
-    getOptimizationCount(content) {
+    getOptimizationCount (content) {
       const matches = content.match(/\d+\.\s\*\*/g)
       return matches ? matches.length : 0
     },
-    
+
     // 新增：解析优化建议
-    parseOptimizationSuggestions(content) {
+    parseOptimizationSuggestions (content) {
       const sections = []
       const parts = content.split(/\d+\.\s\*\*(.+?)\*\*：/).filter(Boolean)
-      
+
       for (let i = 0; i < parts.length; i += 2) {
         if (parts[i] && parts[i + 1]) {
           const title = parts[i].trim()
@@ -518,36 +518,36 @@ export default {
             .split(/\s*-\s/)
             .filter(Boolean)
             .map(s => s.trim().replace(/。$/, ''))
-          
+
           sections.push({ title, suggestions })
         }
       }
-      
+
       return sections
     },
-    
+
     // 新增：解析项目亮点
-    parseProjectHighlights(content) {
+    parseProjectHighlights (content) {
       const projects = []
-      
+
       // 先清理内容，移除HTML标签
       const cleanContent = content.replace(/<[^>]*>/g, '')
-      
+
       // 使用兼容性更好的方法解析项目
       // 按行分割内容
       const lines = cleanContent.split('\n').filter(line => line.trim())
       let currentProject = null
-      
+
       lines.forEach(line => {
         // 匹配项目标题行：数字. **项目名称**：内容
         const titleMatch = line.match(/(\d+)\.\s*\*\*(.+?)\*\*：(.+)/)
-        
+
         if (titleMatch) {
           // 如果之前有项目，先保存它
           if (currentProject) {
             projects.push(currentProject)
           }
-          
+
           // 创建新项目
           currentProject = {
             number: titleMatch[1].trim(),
@@ -559,17 +559,17 @@ export default {
           currentProject.content += ' ' + line.trim()
         }
       })
-      
+
       // 保存最后一个项目
       if (currentProject) {
         projects.push(currentProject)
       }
-      
+
       // 如果上面的方法没有解析出内容，尝试备用方法
       if (projects.length === 0) {
         // 尝试用正则表达式分割整个内容
         const projectSections = cleanContent.split(/(\d+)\.\s*\*\*(.+?)\*\*：/)
-        
+
         for (let i = 1; i < projectSections.length; i += 3) {
           if (projectSections[i] && projectSections[i + 1] && projectSections[i + 2]) {
             projects.push({
@@ -580,7 +580,7 @@ export default {
           }
         }
       }
-      
+
       return projects
     }
   }
@@ -606,16 +606,16 @@ export default {
     .suggestion-title {
         font-size: 14px;
     }
-    
+
     .suggestion-content {
         font-size: 12px;
     }
-    
+
     /* 确保按钮在移动端有足够的点击区域 */
     button {
         min-height: 44px;
     }
-    
+
     /* 优化文件上传按钮 */
     input[type="file"] {
         min-height: 44px;

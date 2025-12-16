@@ -41,7 +41,7 @@ export default {
     return {
       questions: [],
       loading: false,
-      apiKey: 'pat_Q0KamTWwnK4xe3WSfO3xq1kwkLaTONcDbjj71hUZgyMY68TFy3YNUrmD2is4SBGx', // 替换为您的 API Key
+      apiKey: 'pat_M8Ql5qR5MZqrpYb5fubI4rzmWFnzCY7LcgQqdAG3X7TwPANk2wjbWppVSa4bGrB1', // 替换为您的 API Key
       workflowId: '7490816748992823337' // 替换为您的 workflow ID
     }
   },
